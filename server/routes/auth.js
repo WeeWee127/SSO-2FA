@@ -3,15 +3,23 @@ const router = express.Router();
 const authController = require('../controllers/authController');
 const auth = require('../middleware/auth');
 const { isAdmin } = require('../middleware/auth');
+const rateLimit = require('express-rate-limit');
+
+// Ліміт для аутентифікаційних маршрутів
+const authLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 хвилин
+    max: 10, // максимум 10 спроб з одного IP
+    message: { error: 'Забагато спроб. Спробуйте пізніше.' }
+});
 
 // Реєстрація
-router.post('/register', authController.register);
+router.post('/register', authLimiter, authController.register);
 
 // Вхід
-router.post('/login', authController.login);
+router.post('/login', authLimiter, authController.login);
 
 // Перевірка OTP
-router.post('/verify-otp', authController.verifyOTP);
+router.post('/verify-otp', authLimiter, authController.verifyOTP);
 
 // Налаштування 2FA (потрібна авторизація)
 router.get('/setup-2fa', auth, authController.setup2FA);
