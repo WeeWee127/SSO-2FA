@@ -1,5 +1,9 @@
 # Система SSO з двофакторною аутентифікацією
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub stars](https://img.shields.io/github/stars/WeeWee127/SSO-2FA.svg)](https://github.com/WeeWee127/SSO-2FA/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/WeeWee127/SSO-2FA.svg)](https://github.com/WeeWee127/SSO-2FA/issues)
+
 Цей проект — система Single Sign-On (SSO) з двофакторною аутентифікацією (2FA) для веб-додатків. Підтримує сучасний UI, ролі користувачів (user/admin), зміну пароля, налаштування 2FA, адмін-панель.
 
 ---
