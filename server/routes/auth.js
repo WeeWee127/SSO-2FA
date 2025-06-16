@@ -18,14 +18,23 @@ router.post('/register', authLimiter, authController.register);
 // Вхід
 router.post('/login', authLimiter, authController.login);
 
-// Перевірка OTP
+// Перевірка TOTP OTP
 router.post('/verify-otp', authLimiter, authController.verifyOTP);
 
-// Налаштування 2FA (потрібна авторизація)
+// Перевірка нового OTP (для SMS/Email)
+router.post('/verify-new-otp', authLimiter, authController.verifyNewOTP);
+
+// Налаштування TOTP 2FA (потрібна авторизація)
 router.get('/setup-2fa', auth, authController.setup2FA);
 
-// Підтвердження 2FA (потрібна авторизація)
+// Підтвердження TOTP 2FA (потрібна авторизація)
 router.post('/confirm-2fa', auth, authController.confirm2FA);
+
+// Налаштування SMS 2FA (потрібна авторизація)
+router.post('/setup-sms-2fa', auth, authController.setupSms2FA);
+
+// Налаштування Email 2FA (потрібна авторизація)
+router.post('/setup-email-2fa', auth, authController.setupEmail2FA);
 
 // Вихід (потрібна авторизація)
 router.post('/logout', auth, authController.logout);
@@ -33,7 +42,7 @@ router.post('/logout', auth, authController.logout);
 // Зміна пароля (потрібна авторизація)
 router.post('/change-password', auth, authController.changePassword);
 
-// Вимкнення 2FA (потрібна авторизація)
+// Вимкнення TOTP 2FA (потрібна авторизація)
 router.post('/disable-2fa', auth, authController.disable2FA);
 
 // Отримання списку всіх користувачів (тільки для адміна)
